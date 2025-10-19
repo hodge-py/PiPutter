@@ -1,2 +1,2 @@
-# PiScope
+# PiPutter
 Golf Simulator
