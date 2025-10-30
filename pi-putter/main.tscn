@@ -1,0 +1,72 @@
+[gd_scene load_steps=11 format=3 uid="uid://cx7tfishulrrm"]
+
+[ext_resource type="Script" uid="uid://dapk43gcvrwrc" path="res://Main.cs" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c1iqb7etnf8px" path="res://GolfBall.cs" id="2_0xm2m"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7dm0k"]
+radius = 0.021
+
+[sub_resource type="SphereMesh" id="SphereMesh_7dm0k"]
+radius = 0.021
+height = 0.042
+
+[sub_resource type="Skin" id="Skin_ig7tw"]
+
+[sub_resource type="Environment" id="Environment_7dm0k"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7tw"]
+friction = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+albedo_color = Color(1.3235956e-07, 0.35155076, 3.85046e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dm0k"]
+material = SubResource("StandardMaterial3D_ig7tw")
+size = Vector3(1, 0.02, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ig7tw"]
+data = PackedVector3Array(-0.5, 0.01, 0.5, 0.5, 0.01, 0.5, -0.5, -0.01, 0.5, 0.5, 0.01, 0.5, 0.5, -0.01, 0.5, -0.5, -0.01, 0.5, 0.5, 0.01, -0.5, -0.5, 0.01, -0.5, 0.5, -0.01, -0.5, -0.5, 0.01, -0.5, -0.5, -0.01, -0.5, 0.5, -0.01, -0.5, 0.5, 0.01, 0.5, 0.5, 0.01, -0.5, 0.5, -0.01, 0.5, 0.5, 0.01, -0.5, 0.5, -0.01, -0.5, 0.5, -0.01, 0.5, -0.5, 0.01, -0.5, -0.5, 0.01, 0.5, -0.5, -0.01, -0.5, -0.5, 0.01, 0.5, -0.5, -0.01, 0.5, -0.5, -0.01, -0.5, 0.5, 0.01, 0.5, -0.5, 0.01, 0.5, 0.5, 0.01, -0.5, -0.5, 0.01, 0.5, -0.5, 0.01, -0.5, 0.5, 0.01, -0.5, -0.5, -0.01, 0.5, 0.5, -0.01, 0.5, -0.5, -0.01, -0.5, 0.5, -0.01, 0.5, 0.5, -0.01, -0.5, -0.5, -0.01, -0.5)
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.5629399, 0, 0, 0)
+script = ExtResource("1_ig7tw")
+
+[node name="GolfBall" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.049881987, 0)
+can_sleep = false
+script = ExtResource("2_0xm2m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GolfBall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.109605774, 0)
+shape = SubResource("SphereShape3D_7dm0k")
+metadata/_edit_lock_ = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="GolfBall/CollisionShape3D"]
+mesh = SubResource("SphereMesh_7dm0k")
+skin = SubResource("Skin_ig7tw")
+skeleton = NodePath("../..")
+metadata/_edit_lock_ = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7dm0k")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.45757568)
+physics_material_override = SubResource("PhysicsMaterial_ig7tw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019064084, 0)
+mesh = SubResource("BoxMesh_7dm0k")
+skeleton = NodePath("")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.019064084, 0)
+shape = SubResource("ConcavePolygonShape3D_ig7tw")
+metadata/_edit_lock_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.63981986, 0, 0.5575901, -0.39992914)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.9982158, 0.019114139, -0.056568045, 0.002183529, 0.93505937, 0.3544844, 0.038178146, -0.2264805, 0.5971754, -0.08429554, 0.35535377, 0.26257956)

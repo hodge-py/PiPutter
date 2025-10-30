@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://soqww5s0wrxg"]
+
+[node name="Camera_Monitor_Root" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CameraViewpoint" type="SubViewport" parent="."]
+
+[node name="CameraFeedDisplay" type="TextureRect" parent="CameraViewpoint"]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.683
+offset_right = 12.0
+offset_bottom = 4.415985
+
+[node name="SpeedOutput" type="Label" parent="CameraViewpoint"]
+anchors_preset = -1
+anchor_right = 0.48800004
+anchor_bottom = 0.59300005
+offset_right = -0.17602539
+offset_bottom = -0.2640381
