@@ -3,9 +3,7 @@ using OpenCvSharp.Dnn;
 using System;
 using System.IO;
 using OpenCvSharp.Extensions;
-using Microsoft.ML.OnnxRuntime;
-using Microsoft.ML.OnnxRuntime.Tensors;
-using System.Drawing.Printing;
+
 
 class Program
 {
